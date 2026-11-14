@@ -47,6 +47,38 @@ Tipos de apoyo: **T** trend o pantalla original en grande (solo gancho); **B** c
 
 Reglas: 9 a 12 líneas, frases cortas, término clínico correcto más su explicación simple, una línea de tranquilidad sin apoyo, sin subtítulos en L1, L2 ni en el "Chao". Cada dato clínico o legal lleva fuente oficial citada. Indicaciones de grabación que van con el guion: vertical, celular fijo, luz de frente, sin música; cara en el tercio superior y hombros libres; una línea a la vez con 1 s de silencio entre líneas; si se equivoca repite la LÍNEA COMPLETA desde el inicio; todo en una toma, al final "¡Chao!", saludo y 2 s quieta.
 
+### Guion listo para editar (lo que acelera el Modo C)
+El guion se entrega como texto pegado en el chat o como `guion.md`, con este encabezado y reglas:
+
+```
+TÍTULO: postnatal 12 vs 18
+TOMA: cruda | ya editada de corrido
+SUBTÍTULOS: desde L2 (sin subtítulos en L1 ni en el Chao)
+TREND: no | T1 entra en "palabra"
+
+L1 [GANCHO] Postnatal parental de 12 o 18 semanas, aquí te lo explico.
+L2 [CUERPO] Después del parto tienes 12 semanas de postnatal…
+   D1: entra en "Después" · sale en "mamá"
+L3 [CUERPO] Opción 1, 12 semanas más en tu casa…
+   D2: entra en "Opción" · sale cuando entra D3
+…
+L11 [CHAO] ¡Chao!
+```
+
+- La palabra de entrada es una palabra que Cata dice tal cual en esa línea y que no se repite dentro de la línea; si se repite, poner dos palabras ("Opción 2").
+- Cada apoyo dice dónde sale: en una palabra, "cuando entra el siguiente" o "fin de L4".
+- Números escritos como se dicen y como deben verse en el subtítulo ("12 semanas", "30 días").
+- El texto del guion debe ser lo que Cata dijo de verdad; si improvisó, basta avisar "L5 cambió" y se toma de la transcripción.
+- Formatos por rapidez de edición: (1) **datos con tarjetas D** como postnatal: el más rápido, una sola pasada; (2) **fotos F con etiqueta**: rápido si llegan las fotos con permiso; (3) **clips B**: depende de que lleguen todos los clips nombrados; (4) **trend T al inicio**: requiere la grabación de pantalla original del trend.
+
+### Paquete de subida para editar (un solo mensaje)
+1. **Toma**: `toma_1.mov`, `toma_2.mov`, `toma_3.mov`… (4K original partida en trozos de menos de 30 MB, mejor calidad) o `toma.mp4` liviana en 1080x1920. Decir si es cruda o ya editada.
+2. **Apoyos** nombrados con su código: `D1.png`…`D7.png` (o un zip), `B1.mp4`, `F1.jpg`, `T1.mov`.
+3. **Guion** pegado en el chat con el formato de arriba.
+4. **Kit**: `kit_matrona_catita.zip` (logo del cierre, editor, fuente).
+5. **Una línea de pedido**: "Modo C. Toma ya editada. Con y sin subtítulos." más cualquier retoque ("quita la mancha de la polera").
+Con eso la primera entrega sale sin preguntas. Los cambios posteriores se piden en viñetas, uno por línea.
+
 ## Modo C: edición de la toma cruda
 
 ### Formato objetivo (video final aprobado, "cabecita alargada", medido sobre 1080x1920)
