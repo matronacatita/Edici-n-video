@@ -139,17 +139,51 @@ for c in P['cards']:
     im = Image.open(os.path.join(base, c['file'])).convert('RGBA').resize((x1 - x0, y1 - y0), Image.LANCZOS)
     cards.append(dict(im=im, x=x0, y=y0, t0=s2o(c['entra']), t1=s2o(c['sale'])))
 for a, b in zip(cards, cards[1:]):
-    if 0 <= b['t0'] - a['t1'] < 0.2: a['t1'] = b['t0'] + 0.25  # seguidas: la siguiente funde encima
+    if 0 <= b['t0'] - a['t1'] < 0.2: a['t1'] = b['t0'] + 0.45  # seguidas: la siguiente funde encima
 
 
 def draw_cards(img, t):
+    """Entrada dinámica: sube desde abajo, crece con rebote y funde (0,45 s)."""
     for c in cards:
         if c['t0'] <= t < c['t1']:
-            p = min(1.0, (t - c['t0'] + 1 / FPS) / 0.25); e = 1 - (1 - p) ** 3
+            p = min(1.0, (t - c['t0'] + 1 / FPS) / 0.45)
             im = c['im']
             if p < 1:
-                im = im.copy(); im.putalpha(int(255 * e))
-            img.paste(im, (c['x'], c['y'] + int(24 * (1 - e))), im)
+                k = 1.70158 * 1.4; q = p - 1
+                e = 1 + (k + 1) * q ** 3 + k * q ** 2          # easeOutBack (rebote)
+                sc = 0.72 + 0.28 * e
+                w, h = im.size; nw, nh = int(w * sc), int(h * sc)
+                im = im.resize((nw, nh), Image.BILINEAR)
+                im.putalpha(int(255 * min(1.0, p * 2.5)))
+                img.paste(im, (c['x'] + (w - nw) // 2, c['y'] + (h - nh) // 2 + int(140 * (1 - e))), im)
+            else:
+                img.paste(im, (c['x'], c['y']), im)
+
+
+# ---------- retoques ----------
+MANCHA = None
+if P.get('mancha'):
+    import cv2
+    tr = json.load(open(os.path.join(base, P['mancha'])))
+    idx = [i for i, v in enumerate(tr) if v]
+    MANCHA = np.stack([np.interp(range(len(tr)), idx, [tr[i][k] for i in idx]) for k in (0, 1)], 1).astype(int)
+
+
+def quitar_mancha(buf, n):
+    """Borra los pixeles claros cerca de la posición rastreada (inpaint local)."""
+    arr = np.frombuffer(buf, np.uint8).reshape(H, W, 3).copy()
+    x, y = MANCHA[min(n, len(MANCHA) - 1)]; r = 44
+    y0, y1, x0, x1 = max(0, y - r), min(H, y + r), max(0, x - r), min(W, x + r)
+    roi = arr[y0:y1, x0:x1]
+    g = cv2.cvtColor(roi, cv2.COLOR_RGB2GRAY).astype(np.float32)
+    d = cv2.GaussianBlur(g, (0, 0), 1.2) - cv2.medianBlur(cv2.cvtColor(roi, cv2.COLOR_RGB2GRAY), 31).astype(np.float32)
+    m = (d > 4).astype(np.uint8)
+    yy, xx = np.ogrid[:y1 - y0, :x1 - x0]
+    m[(yy - (y - y0)) ** 2 + (xx - (x - x0)) ** 2 > 18 ** 2] = 0
+    if m.any():
+        m = cv2.dilate(m, np.ones((7, 7), np.uint8))
+        arr[y0:y1, x0:x1] = cv2.inpaint(roi, m, 4, cv2.INPAINT_TELEA)
+    return arr.tobytes()
 
 
 # ---------- cuerpo ----------
@@ -169,12 +203,13 @@ def body_frames():
     """Genera (n_salida, PIL frame con zoom) leyendo la toma en orden."""
     p = subprocess.Popen(['ffmpeg', '-v', 'error', '-i', toma, '-vf', f'fps={FPS},scale={W}:{H}:flags=lanczos',
                           '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-'], stdout=subprocess.PIPE)
-    n = 0; si = 0; out = 0
+    n = 0; si = 0; out = 0; last = None
     while si < len(segs):
         buf = p.stdout.read(W * H * 3)
         if len(buf) < W * H * 3:  # fin de la toma: repetir último cuadro
             if out >= NBODY: break
             buf = last
+        if MANCHA is not None and len(buf) == W * H * 3 and buf is not last: buf = quitar_mancha(buf, n)
         last = buf
         a, b = segs[si]
         if n >= a:
