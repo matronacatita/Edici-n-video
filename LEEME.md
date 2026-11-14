@@ -1,6 +1,6 @@
 # Edición de videos Matrona Catita
 
-- `skill/video-matrona-catita/SKILL.md`: skill actualizada (reemplaza a la anterior en Claude).
+- `.claude/skills/video-matrona-catita/SKILL.md`: la skill. Se carga sola en cualquier sesión de Claude Code abierta sobre este repositorio.
 - `editor/`: transcripción, render y rastreo de manchas.
 - `proyectos/<tema>/`: plan de edición, tarjetas y retoques de cada video.
 - `assets/`: logo animado para el cierre y fuente Poppins Bold.

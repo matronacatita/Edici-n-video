@@ -5,7 +5,7 @@ description: "Guion y edición de videos cortos de Matrona Catita (Instagram/Tik
 
 # Video Matrona Catita: temas, guion y edición
 
-Tres modos: **A** temas, **B** guion, **C** edición de la toma cruda. Los scripts, el cierre animado con el logo y las medidas exactas viajan en `kit_matrona_catita.zip`: pedirlo adjunto al iniciar un chat de edición (esta skill solo guarda las instrucciones). Si el kit trae `LEEME.md` y `formato_medido.json`, mandan sobre este texto.
+Tres modos: **A** temas, **B** guion, **C** edición de la toma cruda. Esta skill vive en el repositorio `matronacatita/Edici-n-video` (`.claude/skills/video-matrona-catita/`): cualquier sesión de Claude Code abierta sobre ese repositorio la carga sola y ya tiene el editor (`editor/`), el logo del cierre (`assets/logo_animado.mov`), la fuente (`assets/fonts/`) y los planes anteriores (`proyectos/`), sin adjuntar el kit. En un chat sin el repositorio, pedir `kit_matrona_catita.zip` adjunto. Cada regla nueva o iteración se anota aquí y se sube al repositorio.
 
 ## Contexto fijo
 - Catalina Carrasco (Cata), matrona en Chile. Cuentas Matrona Catita: Instagram ~12,4 mil, TikTok ~33,9 mil seguidores.
@@ -75,7 +75,7 @@ L11 [CHAO] ¡Chao!
 1. **Toma**: `toma_1.mov`, `toma_2.mov`, `toma_3.mov`… (4K original partida en trozos de menos de 30 MB, mejor calidad) o `toma.mp4` liviana en 1080x1920. Decir si es cruda o ya editada.
 2. **Apoyos** nombrados con su código: `D1.png`…`D7.png` (o un zip), `B1.mp4`, `F1.jpg`, `T1.mov`.
 3. **Guion** pegado en el chat con el formato de arriba.
-4. **Kit**: `kit_matrona_catita.zip` (logo del cierre, editor, fuente).
+4. **Kit**: no hace falta si la sesión está abierta sobre el repositorio `Edici-n-video`; en otro chat, adjuntar `kit_matrona_catita.zip`.
 5. **Una línea de pedido**: "Modo C. Toma ya editada. Con y sin subtítulos." más cualquier retoque ("quita la mancha de la polera").
 Con eso la primera entrega sale sin preguntas. Los cambios posteriores se piden en viñetas, uno por línea.
 
