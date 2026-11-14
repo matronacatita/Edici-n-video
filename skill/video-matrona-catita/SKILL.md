@@ -66,7 +66,7 @@ Reglas: 9 a 12 líneas, frases cortas, término clínico correcto más su explic
 
 ### Antes de editar: material y preguntas
 - Una sesión en la nube (Claude Code web) NO ve los chats de Cowork ni los documentos del proyecto: el guion se pega en el chat o se sube al repositorio `matronacatita/Edici-n-video`.
-- Los adjuntos del chat aceptan hasta ~30 MB. Si la toma pesa más: exportarla en 1080x1920 con buena calidad (ideal 8-12 Mbps), o partirla en trozos de menos de 30 MB nombrados en orden, o abrir el chat en la app de escritorio sobre la carpeta del video. No usar 4K.
+- Los adjuntos del chat aceptan hasta ~30 MB. Si la toma pesa más: exportarla en 1080x1920 con buena calidad (ideal 8-12 Mbps), o partirla en trozos de menos de 30 MB (mejor calidad: se conserva el 4K original; el orden se detecta solo por el audio y hay que quitar el cuadro repetido que queda en las uniones), o abrir el chat en la app de escritorio sobre la carpeta del video. No usar 4K.
 - Revisar qué es cada archivo antes de asumir: el `RPReplay` del 2026-11-14 era la animación del logo (sirve de cierre), no un trend.
 - Preguntar si la toma viene **cruda** o **ya editada de corrido**. Si ya viene editada: NO cortar pausas ni aplicar zoom alternado; solo tarjetas, subtítulos, retoques, audio y cierre.
 - Si falta el guion, ubicar cada tarjeta por su texto y entregar la tabla "tarjeta → palabra de entrada" para que Cata la confirme.
@@ -109,5 +109,6 @@ Cada video se mide a 7 días contra la mediana de los 8 anteriores. Se anota: vi
 |---|---|---|---|---|
 | 2026-11-14 | postnatal 12 vs 18 | v1 | 17 cortes de pausas, zoom alternado, tarjetas D1-D7 con fundido, subtítulos, cierre con logo; 51 s | Tarjetas y resto bien; rechazados los cortes (la toma ya venía editada) |
 | 2026-11-14 | postnatal 12 vs 18 | v2 | Sin cortes ni zoom, tarjetas con entrada animada, mancha blanca de la polera borrada; 55 s | Aprobado ("Perfecto") |
+| 2026-11-14 | postnatal 12 vs 18 | v3 | Misma edición que v2 desde la toma 4K original subida en 3 partes (<30 MB c/u), unidas en orden y bajadas a 1080x1920 | Algo más nítida que v2 (pestañas, piel, pelo); diferencia moderada, se nota al ampliar |
 
 Límites conocidos: la calidad final no supera la de la toma recibida (la versión liviana venía a 3,7 Mbps; subir la resolución por software no recupera detalle); sin Whisper como segunda verificación; el audio con ruido de fondo solo se limpia de forma suave.
